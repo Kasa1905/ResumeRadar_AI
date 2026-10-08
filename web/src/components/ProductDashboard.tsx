@@ -54,7 +54,7 @@ export function ProductDashboard() {
       if (res.ok) {
         setAnalysisData(data);
         if (data.source === "live_backend") {
-          setStatusMessage("Live data fetched from local FastAPI backend!");
+          setStatusMessage("Live data fetched from the ResumeRadar API!");
         } else if (data.source === "demo_fallback") {
           setStatusMessage("Connected to verified model analysis (Backend is offline).");
         }

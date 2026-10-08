@@ -10,7 +10,7 @@ source venv/bin/activate
 ./venv/bin/python
 ```
 
-### Run Server (Development)
+### Run FastAPI compatibility server (Development)
 ```bash
 ./venv/bin/uvicorn main:app --reload
 ```
@@ -19,7 +19,7 @@ source venv/bin/activate
 - The module is at root level: `/main.py`
 - Not inside a package: `/app/main.py`
 
-### Run Server (Production)
+### Run FastAPI compatibility server (Production)
 ```bash
 ./venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000
 ```
@@ -29,7 +29,7 @@ source venv/bin/activate
 ./venv/bin/python -m pytest tests/ -v
 ```
 
-### Test API
+### Test local API
 ```bash
 # Health check
 curl -X GET http://localhost:8000/health
@@ -39,6 +39,17 @@ curl -X POST http://localhost:8000/analyze \
   -H "Content-Type: application/json" \
   -d '{"github_url": "https://github.com/Kasa1905"}'
 ```
+
+### Test Netlify Functions locally
+
+From the repository root:
+
+```bash
+npm install -g netlify-cli
+netlify dev
+```
+
+Then use `/api/health` and `/api/analyze` on the local Netlify URL.
 
 ## Environment
 - Create `.env` file with: `GITHUB_TOKEN=your_token_here`

@@ -1,0 +1,17 @@
+[build]
+  command = "npm --prefix web ci && npm --prefix web run build"
+  publish = "web/.next"
+  functions = "netlify/functions"
+
+[functions]
+  included_files = [
+    "config.py",
+    "models.py",
+    "github_service.py",
+    "linkedin_service.py"
+  ]
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200

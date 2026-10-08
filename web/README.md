@@ -90,12 +90,8 @@ Copy `.env.example` to `.env.local`:
 cp .env.example .env.local
 ```
 
-Default variables:
-```ini
-# URL of the ResumeRadar AI FastAPI backend
-NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
-RESUMERADAR_API_URL=http://127.0.0.1:8000
-```
+The frontend uses same-origin `/api/analyze` requests. No client-side API
+secret is required.
 
 ### 3. Run the Development Server
 
@@ -107,7 +103,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## Running with the FastAPI Backend
+## Running with the local FastAPI compatibility backend
 
 To test live analysis with real GitHub profiles:
 
@@ -124,7 +120,9 @@ To test live analysis with real GitHub profiles:
    npm run dev
    ```
 
-3. Navigate to [http://localhost:3000](http://localhost:3000). The interactive dashboard will automatically route requests to `http://127.0.0.1:8000/analyze`. If the backend is not running, the dashboard automatically provides verified sample data so visitors can explore all dashboard tabs and features.
+3. Navigate to [http://localhost:3000](http://localhost:3000). For the
+   production-like serverless workflow, run `netlify dev` from the repository
+   root instead; it serves the frontend and `/api/*` functions together.
 
 ---
 
@@ -138,38 +136,19 @@ npm run build
 npm start
 ```
 
-### Deploying to kasata.me (Vercel Custom Domain)
+### Deploying to Netlify
 
-1. **Push to GitHub**:
-   Ensure all changes are pushed to your remote repository:
-   ```bash
-   git push origin main
-   ```
+The repository root contains `netlify.toml`, which configures the Next.js
+frontend, Python Functions, and `/api/*` redirects. Import the GitHub
+repository into Netlify, add the server-only `GITHUB_TOKEN` environment
+variable, deploy, and attach your custom domain from Netlify's Domain
+management screen.
 
-2. **Connect Project on Vercel**:
-   - Go to [Vercel Dashboard](https://vercel.com/new).
-   - Import `Kasa1905/ResumeRadar_AI`.
-   - Set **Root Directory** to `web`.
-   - Framework preset will automatically detect **Next.js**.
-   - (Optional) Add environment variables:
-     - `NEXT_PUBLIC_API_URL`: Hosted FastAPI backend URL (if deployed) or leave default to run with built-in route handlers.
+Verify the deployment with:
 
-3. **Configure Custom Domain (`kasata.me`)**:
-   - In your Vercel project dashboard, go to **Settings** &rarr; **Domains**.
-   - Add `kasata.me` and `www.kasata.me`.
-   - Point your DNS records (in Cloudflare, Namecheap, GoDaddy, etc.) to Vercel:
-     | Type | Name | Value | Proxy status |
-     |---|---|---|---|
-     | `A` | `@` | `76.76.21.21` | DNS only (or Cloudflare Full SSL) |
-     | `CNAME` | `www` | `cname.vercel-dns.com` | DNS only |
-   - Vercel will automatically generate and renew free SSL certificates for `kasata.me`.
-
-4. **Email Routing (`kasata@kasta.me` / `kasata@kasata.me`)**:
-   - In Cloudflare DNS under **Email Routing** (or your registrar's email forwarding):
-     - Create custom address: `kasata@kasta.me` (or `kasata@kasata.me`).
-     - Route to your primary personal email inbox (e.g., your personal Gmail/Outlook).
-     - Verify destination email.
-     - Outgoing & incoming messages are now tied directly to your verified startup identity!
+```bash
+curl https://your-domain.example/api/health
+```
 
 ---
 

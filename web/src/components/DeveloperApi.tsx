@@ -17,7 +17,7 @@ export function DeveloperApi() {
   const [copied, setCopied] = useState(false);
 
   const snippets = {
-    curl: `curl -X POST http://localhost:8000/analyze \\
+    curl: `curl -X POST /api/analyze \\
   -H "Content-Type: application/json" \\
   -d '{
     "github_url": "https://github.com/Kasa1905",
@@ -28,7 +28,7 @@ export function DeveloperApi() {
 async def inspect_developer():
     async with httpx.AsyncClient() as client:
         response = await client.post(
-            "http://localhost:8000/analyze",
+            "/api/analyze",
             json={
                 "github_url": "https://github.com/Kasa1905",
                 "linkedin_url": "https://linkedin.com/in/kaushiksambe"
@@ -42,7 +42,7 @@ async def inspect_developer():
 # Run with asyncio.run(inspect_developer())`,
     node: `// Next.js / Node.js 18+
 const analyzeProfile = async () => {
-  const response = await fetch("http://localhost:8000/analyze", {
+  const response = await fetch("/api/analyze", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -81,7 +81,7 @@ const analyzeProfile = async () => {
             </h2>
 
             <p className="text-base text-slate-300 leading-relaxed">
-              ResumeRadar AI operates as an ultra-fast FastAPI server. Embed profile intelligence directly into internal hiring workflows, developer dashboards, portfolio builders, or vetting pipelines.
+            ResumeRadar AI operates as a serverless REST API on Netlify. Embed profile intelligence directly into internal hiring workflows, developer dashboards, portfolio builders, or vetting pipelines.
             </p>
 
             {/* Spec Highlights */}
@@ -197,9 +197,9 @@ const analyzeProfile = async () => {
               <div className="p-3 bg-white/[0.02] border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
                 <span className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span>Host: localhost:8000</span>
+                  <span>Host: same-origin /api</span>
                 </span>
-                <span>Configurable via NEXT_PUBLIC_API_URL</span>
+                <span>Netlify Functions</span>
               </div>
             </div>
           </div>
