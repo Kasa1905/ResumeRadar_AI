@@ -1,7 +1,8 @@
 [build]
-  command = "npm --prefix web ci && npm --prefix web run build"
-  publish = "web/.next"
-  functions = "netlify/functions"
+  base = "web"
+  command = "npm ci && npm run build"
+  publish = ".next"
+  functions = "../netlify/functions"
 
 [functions]
   included_files = [
@@ -15,3 +16,6 @@
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
