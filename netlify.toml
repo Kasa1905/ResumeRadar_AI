@@ -2,7 +2,7 @@
   base = "web"
   command = "npm ci && npm run build"
   publish = ".next"
-  functions = "../netlify/functions"
+  functions = "netlify/functions"
 
 [functions]
   included_files = [
