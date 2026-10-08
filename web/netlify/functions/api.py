@@ -8,7 +8,7 @@ from typing import Any
 
 # Netlify packages the function from this directory; add the repository root so
 # the existing service and model modules remain shared with the FastAPI app.
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from github_service import (
     GitHubService,
