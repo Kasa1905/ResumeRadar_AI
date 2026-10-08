@@ -158,6 +158,7 @@ ResumeRadar_AI/
 │   ├── test_endpoints.py     # API endpoint tests
 │   ├── test_github_service.py # GitHub service tests
 │   └── test_linkedin_service.py # LinkedIn service tests
+├── web/                      # Next.js 16 + Tailwind CSS landing page & client
 └── README.md                 # This file
 ```
 

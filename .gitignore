@@ -26,3 +26,9 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+
+# Frontend Web
+web/node_modules/
+web/.next/
+web/.env.local
+
